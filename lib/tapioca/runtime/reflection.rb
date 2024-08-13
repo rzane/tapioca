@@ -184,14 +184,20 @@ module Tapioca
       # Examines the call stack to identify the closest location where a "require" is performed
       # by searching for the label "<top (required)>". If none is found, it returns the location
       # labeled "<main>", which is the original call site.
-      sig { params(locations: T.nilable(T::Array[Thread::Backtrace::Location])).returns(String) }
+      sig { params(locations: T.nilable(T::Array[Thread::Backtrace::Location])).returns([String, Integer]) }
       def resolve_loc(locations)
-        return "" unless locations
+        return ["", 0] unless locations
 
+        # Find the location of the closest file load, which should give us the location of the file that
+        # triggered the definition.
         resolved_loc = locations.find { |loc| REQUIRED_FROM_LABELS.include?(loc.label) }
-        return "" unless resolved_loc
+        return ["", 0] unless resolved_loc
 
-        resolved_loc.absolute_path || ""
+        # Find the location of the last frame in this file to get the most accurate line number.
+        resolved_loc = locations.find { |loc| loc.absolute_path == resolved_loc.absolute_path }
+        return ["", 0] unless resolved_loc
+
+        [resolved_loc.absolute_path || "", resolved_loc.lineno]
       end
 
       sig { params(constant: Module).returns(T::Set[String]) }
