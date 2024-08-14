@@ -26,6 +26,9 @@ class Spoom::Cli::Deadcode < ::Thor
   sig { params(paths: ::String).void }
   def deadcode(*paths); end
 
+  # source://spoom//lib/spoom/cli.rb#72
+  def help(command = T.unsafe(nil), subcommand = T.unsafe(nil)); end
+
   # source://spoom//lib/spoom/cli/deadcode.rb#154
   def remove(location_string); end
 end
@@ -132,8 +135,14 @@ class Spoom::Cli::Main < ::Thor
   # source://spoom//lib/spoom/cli.rb#65
   def coverage(*args); end
 
+  # source://spoom//lib/spoom/cli.rb#72
+  def deadcode(*args); end
+
   # source://spoom//lib/spoom/cli.rb#75
   def lsp(*args); end
+
+  # source://spoom//lib/spoom/cli.rb#22
+  def srb(*args); end
 
   # source://spoom//lib/spoom/cli.rb#94
   def tc(*paths_to_select); end
@@ -167,6 +176,9 @@ class Spoom::Cli::Srb::Bump < ::Thor
   sig { params(directory: ::String).void }
   def bump(directory = T.unsafe(nil)); end
 
+  # source://spoom//lib/spoom/cli/srb.rb#20
+  def help(command = T.unsafe(nil), subcommand = T.unsafe(nil)); end
+
   # source://spoom//lib/spoom/cli/srb/bump.rb#171
   def print_changes(files, command:, from: T.unsafe(nil), to: T.unsafe(nil), dry: T.unsafe(nil), path: T.unsafe(nil)); end
 
@@ -181,6 +193,9 @@ class Spoom::Cli::Srb::Coverage < ::Thor
 
   # source://spoom//lib/spoom/cli/srb/coverage.rb#199
   def bundle_install(path, sha); end
+
+  # source://spoom//lib/spoom/cli/srb.rb#17
+  def help(command = T.unsafe(nil), subcommand = T.unsafe(nil)); end
 
   # source://spoom//lib/spoom/cli/srb/coverage.rb#211
   def message_no_data(file); end
@@ -218,6 +233,9 @@ class Spoom::Cli::Srb::LSP < ::Thor
   #
   # source://spoom//lib/spoom/cli/srb/lsp.rb#55
   def find(query); end
+
+  # source://spoom//lib/spoom/cli/srb.rb#14
+  def help(command = T.unsafe(nil), subcommand = T.unsafe(nil)); end
 
   # TODO: options, filter, limit, kind etc.. filter rbi
   #
@@ -263,7 +281,22 @@ class Spoom::Cli::Srb::LSP < ::Thor
 end
 
 # source://spoom//lib/spoom/cli/srb.rb#12
-class Spoom::Cli::Srb::Main < ::Thor; end
+class Spoom::Cli::Srb::Main < ::Thor
+  # source://spoom//lib/spoom/cli/srb.rb#20
+  def bump(*args); end
+
+  # source://spoom//lib/spoom/cli/srb.rb#17
+  def coverage(*args); end
+
+  # source://spoom//lib/spoom/cli.rb#22
+  def help(command = T.unsafe(nil), subcommand = T.unsafe(nil)); end
+
+  # source://spoom//lib/spoom/cli/srb.rb#14
+  def lsp(*args); end
+
+  # source://spoom//lib/spoom/cli/srb.rb#23
+  def tc(*args); end
+end
 
 # source://spoom//lib/spoom/cli/srb/tc.rb#7
 class Spoom::Cli::Srb::Tc < ::Thor
@@ -275,6 +308,9 @@ class Spoom::Cli::Srb::Tc < ::Thor
 
   # source://spoom//lib/spoom/cli/srb/tc.rb#123
   def format_error(error, format); end
+
+  # source://spoom//lib/spoom/cli/srb.rb#23
+  def help(command = T.unsafe(nil), subcommand = T.unsafe(nil)); end
 
   # source://spoom//lib/spoom/cli/srb/tc.rb#27
   def tc(*paths_to_select); end

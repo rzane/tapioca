@@ -12,34 +12,6 @@ class ActionController::Base < ::ActionController::Metal
   include ::AbstractController::Caching::ConfigMethods
   include ::ActionController::BasicImplicitRender
   extend ::AbstractController::Helpers::Resolution
-
-  # source://actionview//lib/action_view/layouts.rb#216
-  def _layout_conditions(&block); end
-
-  private
-
-  # source://actionview//lib/action_view/layouts.rb#330
-  def _layout(lookup_context, formats); end
-
-  class << self
-    # source://actionview//lib/action_view/layouts.rb#211
-    def _layout; end
-
-    # source://actionview//lib/action_view/layouts.rb#211
-    def _layout=(value); end
-
-    # source://actionview//lib/action_view/layouts.rb#211
-    def _layout?; end
-
-    # source://actionview//lib/action_view/layouts.rb#212
-    def _layout_conditions; end
-
-    # source://actionview//lib/action_view/layouts.rb#212
-    def _layout_conditions=(value); end
-
-    # source://actionview//lib/action_view/layouts.rb#212
-    def _layout_conditions?; end
-  end
 end
 
 # :include: actionview/README.rdoc
@@ -431,6 +403,12 @@ class ActionView::Base
   # source://actionview//lib/action_view/base.rb#207
   def assign(new_assigns); end
 
+  # source://actionview//lib/action_view/base.rb#203
+  def assigns; end
+
+  # source://actionview//lib/action_view/base.rb#203
+  def assigns=(_arg0); end
+
   # source://actionview//lib/action_view/base.rb#160
   def automatically_disable_submit_tag; end
 
@@ -442,10 +420,16 @@ class ActionView::Base
   # source://actionview//lib/action_view/base.rb#270
   def compiled_method_container; end
 
-  # source://actionview//lib/action_view/helpers/translation_helper.rb#18
+  # source://actionview//lib/action_view/base.rb#203
+  def config; end
+
+  # source://actionview//lib/action_view/base.rb#203
+  def config=(_arg0); end
+
+  # source://actionview//lib/action_view/base.rb#142
   def debug_missing_translation; end
 
-  # source://actionview//lib/action_view/helpers/translation_helper.rb#18
+  # source://actionview//lib/action_view/base.rb#142
   def debug_missing_translation=(val); end
 
   # source://actionview//lib/action_view/base.rb#157
@@ -548,16 +532,16 @@ class ActionView::Base
     # source://actionview//lib/action_view/base.rb#197
     def changed?(other); end
 
-    # source://actionview//lib/action_view/helpers/translation_helper.rb#18
+    # source://actionview//lib/action_view/base.rb#142
     def debug_missing_translation; end
 
-    # source://actionview//lib/action_view/helpers/translation_helper.rb#18
+    # source://actionview//lib/action_view/base.rb#142
     def debug_missing_translation=(val); end
 
-    # source://actionview//lib/action_view/helpers/form_helper.rb#2759
+    # source://actionview//lib/action_view/base.rb#297
     def default_form_builder; end
 
-    # source://actionview//lib/action_view/helpers/form_helper.rb#2759
+    # source://actionview//lib/action_view/base.rb#297
     def default_form_builder=(val); end
 
     # source://actionview//lib/action_view/base.rb#157
@@ -580,7 +564,7 @@ class ActionView::Base
     # source://actionview//lib/action_view/base.rb#145
     def field_error_proc=(val); end
 
-    # source://actionview//lib/action_view/base.rb#166
+    # source://actionview//lib/action_view/base.rb#297
     def logger; end
 
     # source://actionview//lib/action_view/base.rb#166
@@ -1118,7 +1102,7 @@ class ActionView::FileSystemResolver < ::ActionView::Resolver
 
   # @return [Boolean]
   #
-  # source://actionview//lib/action_view/template/resolver.rb#115
+  # source://actionview//lib/action_view/template/resolver.rb#118
   def ==(resolver); end
 
   # source://actionview//lib/action_view/template/resolver.rb#120
@@ -1140,7 +1124,7 @@ class ActionView::FileSystemResolver < ::ActionView::Resolver
   # source://actionview//lib/action_view/template/resolver.rb#94
   def path; end
 
-  # source://actionview//lib/action_view/template/resolver.rb#110
+  # source://actionview//lib/action_view/template/resolver.rb#113
   def to_path; end
 
   # source://actionview//lib/action_view/template/resolver.rb#110
@@ -2137,7 +2121,7 @@ module ActionView::Helpers::AssetUrlHelper
   #
   # @raise [ArgumentError]
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#187
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#219
   def path_to_asset(source, options = T.unsafe(nil)); end
 
   # Computes the path to an audio asset in the public audios directory.
@@ -2151,7 +2135,7 @@ module ActionView::Helpers::AssetUrlHelper
   #   audio_path("http://www.example.com/sounds/horse.wav")          # => http://www.example.com/sounds/horse.wav
   # aliased to avoid conflicts with an audio_path named route
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#430
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#433
   def path_to_audio(source, options = T.unsafe(nil)); end
 
   # Computes the path to a font asset.
@@ -2164,7 +2148,7 @@ module ActionView::Helpers::AssetUrlHelper
   #   font_path("http://www.example.com/dir/font.ttf")            # => http://www.example.com/dir/font.ttf
   # aliased to avoid conflicts with a font_path named route
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#455
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#458
   def path_to_font(source, options = T.unsafe(nil)); end
 
   # Computes the path to an image asset.
@@ -2182,7 +2166,7 @@ module ActionView::Helpers::AssetUrlHelper
   # plugin authors are encouraged to do so.
   # aliased to avoid conflicts with an image_path named route
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#378
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#381
   def path_to_image(source, options = T.unsafe(nil)); end
 
   # Computes the path to a JavaScript asset in the public javascripts directory.
@@ -2197,7 +2181,7 @@ module ActionView::Helpers::AssetUrlHelper
   #   javascript_path "http://www.example.com/js/xmlhr.js" # => http://www.example.com/js/xmlhr.js
   # aliased to avoid conflicts with a javascript_path named route
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#321
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#324
   def path_to_javascript(source, options = T.unsafe(nil)); end
 
   # Computes the path to a stylesheet asset in the public stylesheets directory.
@@ -2212,7 +2196,7 @@ module ActionView::Helpers::AssetUrlHelper
   #   stylesheet_path "http://www.example.com/css/style.css"   # => http://www.example.com/css/style.css
   # aliased to avoid conflicts with a stylesheet_path named route
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#348
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#351
   def path_to_stylesheet(source, options = T.unsafe(nil)); end
 
   # Computes the path to a video asset in the public videos directory.
@@ -2226,14 +2210,14 @@ module ActionView::Helpers::AssetUrlHelper
   #   video_path("http://www.example.com/vid/hd.avi")             # => http://www.example.com/vid/hd.avi
   # aliased to avoid conflicts with a video_path named route
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#404
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#407
   def path_to_video(source, options = T.unsafe(nil)); end
 
   # Computes asset path to public directory. Plugins and
   # extensions can override this method to point to custom assets
   # or generate digested paths or query strings.
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#266
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#270
   def public_compute_asset_path(source, options = T.unsafe(nil)); end
 
   # Computes the path to a stylesheet asset in the public stylesheets directory.
@@ -2271,7 +2255,7 @@ module ActionView::Helpers::AssetUrlHelper
   #   asset_url "application.js", host: "http://cdn.example.com" # => http://cdn.example.com/assets/application.js
   # aliased to avoid conflicts with an asset_url named route
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#231
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#234
   def url_to_asset(source, options = T.unsafe(nil)); end
 
   # Computes the full URL to an audio asset in the public audios directory.
@@ -2282,7 +2266,7 @@ module ActionView::Helpers::AssetUrlHelper
   #   audio_url "horse.wav", host: "http://stage.example.com" # => http://stage.example.com/audios/horse.wav
   # aliased to avoid conflicts with an audio_url named route
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#442
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#445
   def url_to_audio(source, options = T.unsafe(nil)); end
 
   # Computes the full URL to a font asset.
@@ -2293,7 +2277,7 @@ module ActionView::Helpers::AssetUrlHelper
   #   font_url "font.ttf", host: "http://stage.example.com" # => http://stage.example.com/fonts/font.ttf
   # aliased to avoid conflicts with a font_url named route
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#467
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#470
   def url_to_font(source, options = T.unsafe(nil)); end
 
   # Computes the full URL to an image asset.
@@ -2304,7 +2288,7 @@ module ActionView::Helpers::AssetUrlHelper
   #   image_url "edit.png", host: "http://stage.example.com" # => http://stage.example.com/assets/edit.png
   # aliased to avoid conflicts with an image_url named route
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#390
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#393
   def url_to_image(source, options = T.unsafe(nil)); end
 
   # Computes the full URL to a JavaScript asset in the public javascripts directory.
@@ -2315,7 +2299,7 @@ module ActionView::Helpers::AssetUrlHelper
   #   javascript_url "js/xmlhr.js", host: "http://stage.example.com" # => http://stage.example.com/assets/js/xmlhr.js
   # aliased to avoid conflicts with a javascript_url named route
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#333
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#336
   def url_to_javascript(source, options = T.unsafe(nil)); end
 
   # Computes the full URL to a stylesheet asset in the public stylesheets directory.
@@ -2326,7 +2310,7 @@ module ActionView::Helpers::AssetUrlHelper
   #   stylesheet_url "css/style.css", host: "http://stage.example.com" # => http://stage.example.com/assets/css/style.css
   # aliased to avoid conflicts with a stylesheet_url named route
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#360
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#363
   def url_to_stylesheet(source, options = T.unsafe(nil)); end
 
   # Computes the full URL to a video asset in the public videos directory.
@@ -2337,7 +2321,7 @@ module ActionView::Helpers::AssetUrlHelper
   #   video_url "hd.avi", host: "http://stage.example.com" # => http://stage.example.com/videos/hd.avi
   # aliased to avoid conflicts with a video_url named route
   #
-  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#416
+  # source://actionview//lib/action_view/helpers/asset_url_helper.rb#419
   def url_to_video(source, options = T.unsafe(nil)); end
 
   # Computes the path to a video asset in the public videos directory.
@@ -3077,7 +3061,10 @@ module ActionView::Helpers::ControllerHelper
   # source://actionview//lib/action_view/helpers/controller_helper.rb#20
   def assign_controller(controller); end
 
+  # source://actionview//lib/action_view/helpers/controller_helper.rb#12
   def controller; end
+
+  # source://actionview//lib/action_view/helpers/controller_helper.rb#12
   def controller=(_arg0); end
 
   # source://actionview//lib/action_view/helpers/controller_helper.rb#18
@@ -3101,7 +3088,10 @@ module ActionView::Helpers::ControllerHelper
   # source://actionview//lib/action_view/helpers/controller_helper.rb#18
   def params(*_arg0, **_arg1, &_arg2); end
 
+  # source://actionview//lib/action_view/helpers/controller_helper.rb#12
   def request; end
+
+  # source://actionview//lib/action_view/helpers/controller_helper.rb#12
   def request=(_arg0); end
 
   # source://actionview//lib/action_view/helpers/controller_helper.rb#18
@@ -3160,7 +3150,7 @@ module ActionView::Helpers::CsrfHelper
   # +X-CSRF-Token+ HTTP header. If you are using rails-ujs, this happens automatically.
   # For backwards compatibility.
   #
-  # source://actionview//lib/action_view/helpers/csrf_helper.rb#22
+  # source://actionview//lib/action_view/helpers/csrf_helper.rb#32
   def csrf_meta_tag; end
 
   # Returns meta tags "csrf-param" and "csrf-token" with the name of the cross-site
@@ -3429,7 +3419,7 @@ module ActionView::Helpers::DateHelper
   #
   # Note that you cannot pass a <tt>Numeric</tt> value to <tt>time_ago_in_words</tt>.
   #
-  # source://actionview//lib/action_view/helpers/date_helper.rb#176
+  # source://actionview//lib/action_view/helpers/date_helper.rb#180
   def distance_of_time_in_words_to_now(from_time, options = T.unsafe(nil)); end
 
   # Returns a set of HTML select-tags (one for year, month, and day) pre-selected with the +date+.
@@ -4357,10 +4347,10 @@ class ActionView::Helpers::FormBuilder
   # source://actionview//lib/action_view/helpers/form_options_helper.rb#860
   def collection_select(method, collection, value_method, text_method, options = T.unsafe(nil), html_options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def color_field(method, options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def date_field(method, options = T.unsafe(nil)); end
 
   # Wraps ActionView::Helpers::DateHelper#date_select for form builders:
@@ -4375,10 +4365,10 @@ class ActionView::Helpers::FormBuilder
   # source://actionview//lib/action_view/helpers/date_helper.rb#1237
   def date_select(method, options = T.unsafe(nil), html_options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def datetime_field(method, options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def datetime_local_field(method, options = T.unsafe(nil)); end
 
   # Wraps ActionView::Helpers::DateHelper#datetime_select for form builders:
@@ -4393,7 +4383,7 @@ class ActionView::Helpers::FormBuilder
   # source://actionview//lib/action_view/helpers/date_helper.rb#1261
   def datetime_select(method, options = T.unsafe(nil), html_options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def email_field(method, options = T.unsafe(nil)); end
 
   # @return [Boolean]
@@ -4880,7 +4870,7 @@ class ActionView::Helpers::FormBuilder
   # source://actionview//lib/action_view/helpers/form_helper.rb#2399
   def label(method, text = T.unsafe(nil), options = T.unsafe(nil), &block); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def month_field(method, options = T.unsafe(nil)); end
 
   # Returns the value of attribute multipart.
@@ -4893,10 +4883,10 @@ class ActionView::Helpers::FormBuilder
 
   # Returns the value of attribute multipart.
   #
-  # source://actionview//lib/action_view/helpers/form_helper.rb#1692
+  # source://actionview//lib/action_view/helpers/form_helper.rb#1693
   def multipart?; end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def number_field(method, options = T.unsafe(nil)); end
 
   # Returns the value of attribute object.
@@ -4935,10 +4925,10 @@ class ActionView::Helpers::FormBuilder
   # source://actionview//lib/action_view/helpers/form_helper.rb#1690
   def options=(_arg0); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def password_field(method, options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def phone_field(method, options = T.unsafe(nil)); end
 
   # Returns a radio button tag for accessing a specified attribute (identified by +method+) on an object
@@ -4963,10 +4953,10 @@ class ActionView::Helpers::FormBuilder
   # source://actionview//lib/action_view/helpers/form_helper.rb#2490
   def radio_button(method, tag_value, options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def range_field(method, options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def search_field(method, options = T.unsafe(nil)); end
 
   # Wraps ActionView::Helpers::FormOptionsHelper#select for form builders:
@@ -5011,16 +5001,16 @@ class ActionView::Helpers::FormBuilder
   # source://actionview//lib/action_view/helpers/form_helper.rb#2583
   def submit(value = T.unsafe(nil), options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def telephone_field(method, options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def text_area(method, options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def text_field(method, options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def time_field(method, options = T.unsafe(nil)); end
 
   # Wraps ActionView::Helpers::DateHelper#time_select for form builders:
@@ -5053,10 +5043,10 @@ class ActionView::Helpers::FormBuilder
   # source://actionview//lib/action_view/helpers/form_helper.rb#1707
   def to_partial_path; end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def url_field(method, options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/helpers/form_helper.rb#2021
+  # source://actionview//lib/action_view/helpers/form_helper.rb#2020
   def week_field(method, options = T.unsafe(nil)); end
 
   # Wraps ActionView::Helpers::FormOptionsHelper#weekday_select for form builders:
@@ -5395,10 +5385,13 @@ module ActionView::Helpers::FormHelper
   #   datetime_field("user", "born_on", include_seconds: false)
   #   # => <input id="user_born_on" name="user[born_on]" type="datetime-local" value="2014-05-20T14:35" />
   #
-  # source://actionview//lib/action_view/helpers/form_helper.rb#1510
+  # source://actionview//lib/action_view/helpers/form_helper.rb#1514
   def datetime_local_field(object_name, method, options = T.unsafe(nil)); end
 
+  # source://actionview//lib/action_view/helpers/form_helper.rb#120
   def default_form_builder; end
+
+  # source://actionview//lib/action_view/helpers/form_helper.rb#120
   def default_form_builder=(_arg0); end
 
   # Returns a text_field of type "email".
@@ -6482,7 +6475,7 @@ module ActionView::Helpers::FormHelper
   #   # => <input id="user_phone" name="user[phone]" type="tel" />
   # aliases telephone_field
   #
-  # source://actionview//lib/action_view/helpers/form_helper.rb#1405
+  # source://actionview//lib/action_view/helpers/form_helper.rb#1409
   def phone_field(object_name, method, options = T.unsafe(nil)); end
 
   # Returns a radio button tag for accessing a specified attribute (identified by +method+) on an object
@@ -7609,7 +7602,7 @@ module ActionView::Helpers::FormTagHelper
   # * <tt>:step</tt> - The acceptable value granularity.
   # * <tt>:include_seconds</tt> - Include seconds in the output timestamp format (true by default).
   #
-  # source://actionview//lib/action_view/helpers/form_tag_helper.rb#801
+  # source://actionview//lib/action_view/helpers/form_tag_helper.rb#805
   def datetime_local_field_tag(name, value = T.unsafe(nil), options = T.unsafe(nil)); end
 
   # source://actionview//lib/action_view/helpers/form_tag_helper.rb#29
@@ -7980,7 +7973,7 @@ module ActionView::Helpers::FormTagHelper
   #   telephone_field_tag 'tel', '0123456789', class: 'special_input', disabled: true
   #   # => <input disabled="disabled" class="special_input" id="tel" name="tel" type="tel" value="0123456789" />
   #
-  # source://actionview//lib/action_view/helpers/form_tag_helper.rb#749
+  # source://actionview//lib/action_view/helpers/form_tag_helper.rb#752
   def phone_field_tag(name, value = T.unsafe(nil), options = T.unsafe(nil)); end
 
   # :call-seq:
@@ -8360,7 +8353,7 @@ module ActionView::Helpers::JavaScriptHelper
   #
   #   $('some_element').replaceWith('<%= j render 'some/element_template' %>');
   #
-  # source://actionview//lib/action_view/helpers/javascript_helper.rb#28
+  # source://actionview//lib/action_view/helpers/javascript_helper.rb#38
   def j(javascript); end
 
   # source://actionview//lib/action_view/helpers/javascript_helper.rb#91
@@ -8935,7 +8928,7 @@ module ActionView::Helpers::TagHelper
   #   token_list(nil, false, 123, "", "foo", { bar: true })
   #    # => "123 foo bar"
   #
-  # source://actionview//lib/action_view/helpers/tag_helper.rb#366
+  # source://actionview//lib/action_view/helpers/tag_helper.rb#371
   def class_names(*args); end
 
   # Returns an HTML block tag of type +name+ surrounding the +content+. Add
@@ -9147,7 +9140,7 @@ module ActionView::Helpers::TagHelper
   def tag_builder; end
 
   class << self
-    # source://actionview//lib/action_view/helpers/tag_helper.rb#403
+    # source://actionview//lib/action_view/helpers/tag_helper.rb#421
     def build_tag_values(*args); end
   end
 end
@@ -10274,7 +10267,7 @@ module ActionView::Helpers::TranslationHelper
   # See https://www.rubydoc.info/gems/i18n/I18n/Backend/Base:localize
   # for more information.
   #
-  # source://actionview//lib/action_view/helpers/translation_helper.rb#116
+  # source://actionview//lib/action_view/helpers/translation_helper.rb#119
   def l(object, **options); end
 
   # Delegates to <tt>I18n.localize</tt> with no additional functionality.
@@ -10337,7 +10330,7 @@ module ActionView::Helpers::TranslationHelper
   # This enables annotate translated text to be aware of the scope it was
   # resolved against.
   #
-  # source://actionview//lib/action_view/helpers/translation_helper.rb#73
+  # source://actionview//lib/action_view/helpers/translation_helper.rb#110
   def t(key, **options); end
 
   # Delegates to <tt>I18n#translate</tt> but also performs three additional
@@ -11276,6 +11269,7 @@ module ActionView::Layouts
   # source://actionview//lib/action_view/layouts.rb#352
   def _normalize_options(options); end
 
+  # source://actionview//lib/action_view/layouts.rb#361
   def action_has_layout=(_arg0); end
 
   # Controls whether an action should be rendered using a layout.
@@ -11450,6 +11444,9 @@ class ActionView::LogSubscriber < ::ActiveSupport::LogSubscriber
   class << self
     # source://actionview//lib/action_view/log_subscriber.rb#101
     def attach_to(*_arg0); end
+
+    # source://actionview//lib/action_view/log_subscriber.rb#55
+    def log_levels; end
   end
 end
 
@@ -11551,40 +11548,40 @@ end
 #
 # source://actionview//lib/action_view/lookup_context.rb#39
 module ActionView::LookupContext::Accessors
-  # source://actionview//lib/action_view/lookup_context.rb#50
+  # source://actionview//lib/action_view/lookup_context.rb#25
   def default_formats; end
 
-  # source://actionview//lib/action_view/lookup_context.rb#52
+  # source://actionview//lib/action_view/lookup_context.rb#25
   def default_handlers; end
 
-  # source://actionview//lib/action_view/lookup_context.rb#43
+  # source://actionview//lib/action_view/lookup_context.rb#25
   def default_locale; end
 
-  # source://actionview//lib/action_view/lookup_context.rb#51
+  # source://actionview//lib/action_view/lookup_context.rb#25
   def default_variants; end
 
-  # source://actionview//lib/action_view/lookup_context.rb#27
+  # source://actionview//lib/action_view/lookup_context.rb#26
   def formats; end
 
-  # source://actionview//lib/action_view/lookup_context.rb#31
+  # source://actionview//lib/action_view/lookup_context.rb#26
   def formats=(value); end
 
-  # source://actionview//lib/action_view/lookup_context.rb#27
+  # source://actionview//lib/action_view/lookup_context.rb#26
   def handlers; end
 
-  # source://actionview//lib/action_view/lookup_context.rb#31
+  # source://actionview//lib/action_view/lookup_context.rb#26
   def handlers=(value); end
 
-  # source://actionview//lib/action_view/lookup_context.rb#27
+  # source://actionview//lib/action_view/lookup_context.rb#26
   def locale; end
 
-  # source://actionview//lib/action_view/lookup_context.rb#31
+  # source://actionview//lib/action_view/lookup_context.rb#26
   def locale=(value); end
 
-  # source://actionview//lib/action_view/lookup_context.rb#27
+  # source://actionview//lib/action_view/lookup_context.rb#26
   def variants; end
 
-  # source://actionview//lib/action_view/lookup_context.rb#31
+  # source://actionview//lib/action_view/lookup_context.rb#26
   def variants=(value); end
 end
 
@@ -11657,7 +11654,7 @@ module ActionView::LookupContext::ViewPaths
 
   # @return [Boolean]
   #
-  # source://actionview//lib/action_view/lookup_context.rb#148
+  # source://actionview//lib/action_view/lookup_context.rb#153
   def any_templates?(name, prefixes = T.unsafe(nil), partial = T.unsafe(nil)); end
 
   # source://actionview//lib/action_view/lookup_context.rb#155
@@ -11674,7 +11671,7 @@ module ActionView::LookupContext::ViewPaths
   # source://actionview//lib/action_view/lookup_context.rb#135
   def find_all(name, prefixes = T.unsafe(nil), partial = T.unsafe(nil), keys = T.unsafe(nil), options = T.unsafe(nil)); end
 
-  # source://actionview//lib/action_view/lookup_context.rb#128
+  # source://actionview//lib/action_view/lookup_context.rb#133
   def find_template(name, prefixes = T.unsafe(nil), partial = T.unsafe(nil), keys = T.unsafe(nil), options = T.unsafe(nil)); end
 
   # Returns the value of attribute html_fallback_for_js.
@@ -11687,7 +11684,7 @@ module ActionView::LookupContext::ViewPaths
 
   # @return [Boolean]
   #
-  # source://actionview//lib/action_view/lookup_context.rb#141
+  # source://actionview//lib/action_view/lookup_context.rb#146
   def template_exists?(name, prefixes = T.unsafe(nil), partial = T.unsafe(nil), keys = T.unsafe(nil), **options); end
 
   # Returns the value of attribute view_paths.
@@ -11779,30 +11776,47 @@ class ActionView::MissingTemplate::Results::Result < ::Struct
   # Returns the value of attribute path
   #
   # @return [Object] the current value of path
+  #
+  # source://actionview//lib/action_view/template/error.rb#61
   def path; end
 
   # Sets the attribute path
   #
   # @param value [Object] the value to set the attribute path to.
   # @return [Object] the newly set value
+  #
+  # source://actionview//lib/action_view/template/error.rb#61
   def path=(_); end
 
   # Returns the value of attribute score
   #
   # @return [Object] the current value of score
+  #
+  # source://actionview//lib/action_view/template/error.rb#61
   def score; end
 
   # Sets the attribute score
   #
   # @param value [Object] the value to set the attribute score to.
   # @return [Object] the newly set value
+  #
+  # source://actionview//lib/action_view/template/error.rb#61
   def score=(_); end
 
   class << self
+    # source://actionview//lib/action_view/template/error.rb#61
     def [](*_arg0); end
+
+    # source://actionview//lib/action_view/template/error.rb#61
     def inspect; end
+
+    # source://actionview//lib/action_view/template/error.rb#61
     def keyword_init?; end
+
+    # source://actionview//lib/action_view/template/error.rb#61
     def members; end
+
+    # source://actionview//lib/action_view/template/error.rb#61
     def new(*_arg0); end
   end
 end
@@ -11870,7 +11884,7 @@ class ActionView::OutputBuffer
   # source://actionview//lib/action_view/buffers.rb#81
   def ==(other); end
 
-  # source://actionview//lib/action_view/buffers.rb#42
+  # source://actionview//lib/action_view/buffers.rb#54
   def append=(value); end
 
   # source://actionview//lib/action_view/buffers.rb#27
@@ -11879,7 +11893,7 @@ class ActionView::OutputBuffer
   # source://actionview//lib/action_view/buffers.rb#72
   def capture(*args); end
 
-  # source://actionview//lib/action_view/buffers.rb#42
+  # source://actionview//lib/action_view/buffers.rb#53
   def concat(value); end
 
   # source://actionview//lib/action_view/buffers.rb#27
@@ -11894,7 +11908,7 @@ class ActionView::OutputBuffer
   # source://actionview//lib/action_view/buffers.rb#27
   def force_encoding(*_arg0, **_arg1, &_arg2); end
 
-  # source://actionview//lib/action_view/buffers.rb#29
+  # source://actionview//lib/action_view/buffers.rb#32
   def html_safe; end
 
   # @return [Boolean]
@@ -11913,7 +11927,7 @@ class ActionView::OutputBuffer
   # source://actionview//lib/action_view/buffers.rb#89
   def raw_buffer; end
 
-  # source://actionview//lib/action_view/buffers.rb#56
+  # source://actionview//lib/action_view/buffers.rb#60
   def safe_append=(value); end
 
   # source://actionview//lib/action_view/buffers.rb#56
@@ -11948,7 +11962,7 @@ class ActionView::OutputFlow
 
   # Called by content_for
   #
-  # source://actionview//lib/action_view/flows.rb#24
+  # source://actionview//lib/action_view/flows.rb#27
   def append!(key, value); end
 
   # Returns the value of attribute content.
@@ -12226,10 +12240,10 @@ class ActionView::PartialRenderer < ::ActionView::AbstractRenderer
   # source://actionview//lib/action_view/renderer/partial_renderer.rb#223
   def initialize(lookup_context, options); end
 
-  # source://actionview//lib/action_view/renderer/partial_renderer/collection_caching.rb#12
+  # source://actionview//lib/action_view/renderer/partial_renderer.rb#221
   def collection_cache; end
 
-  # source://actionview//lib/action_view/renderer/partial_renderer/collection_caching.rb#12
+  # source://actionview//lib/action_view/renderer/partial_renderer.rb#221
   def collection_cache=(val); end
 
   # source://actionview//lib/action_view/renderer/partial_renderer.rb#230
@@ -12247,10 +12261,10 @@ class ActionView::PartialRenderer < ::ActionView::AbstractRenderer
   def template_keys(_); end
 
   class << self
-    # source://actionview//lib/action_view/renderer/partial_renderer/collection_caching.rb#12
+    # source://actionview//lib/action_view/renderer/partial_renderer.rb#221
     def collection_cache; end
 
-    # source://actionview//lib/action_view/renderer/partial_renderer/collection_caching.rb#12
+    # source://actionview//lib/action_view/renderer/partial_renderer.rb#221
     def collection_cache=(val); end
   end
 end
@@ -12648,574 +12662,574 @@ end
 
 # source://actionview//lib/action_view/ripper_ast_parser.rb#111
 class ActionView::RenderParser::RipperASTParser::NodeParser < ::Ripper
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_BEGIN(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_CHAR(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_END(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on___end__(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_alias(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_alias_error(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_aref(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_aref_field(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_arg_ambiguous(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_arg_paren(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_args_add(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_args_add_block(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_args_add_star(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_args_forward(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#116
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#115
   def on_args_new(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_array(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_aryptn(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_assign(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_assign_error(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_assoc_new(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_assoc_splat(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_assoclist_from_args(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_backref(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_backtick(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_bare_assoc_hash(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_begin(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_binary(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_block_var(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_blockarg(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_bodystmt(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_brace_block(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_break(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_call(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_case(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_class(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_class_name_error(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_comma(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_command(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_command_call(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_comment(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_const(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_const_path_field(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_const_path_ref(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_const_ref(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_cvar(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_def(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_defined(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_defs(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_do_block(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_dot2(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_dot3(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_dyna_symbol(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_else(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_elsif(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_embdoc(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_embdoc_beg(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_embdoc_end(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_embexpr_beg(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_embexpr_end(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_embvar(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_ensure(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_excessed_comma(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_fcall(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_field(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_float(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_fndptn(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_for(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_gvar(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_hash(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_heredoc_beg(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_heredoc_dedent(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_heredoc_end(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_hshptn(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_ident(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_if(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_if_mod(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_ifop(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_ignored_nl(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_ignored_sp(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_imaginary(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_in(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_int(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_ivar(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_kw(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_kwrest_param(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_label(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_label_end(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_lambda(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_lbrace(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_lbracket(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_lparen(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_magic_comment(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_massign(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_method_add_arg(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_method_add_block(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_mlhs_add(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_mlhs_add_post(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_mlhs_add_star(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#116
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#115
   def on_mlhs_new(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_mlhs_paren(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_module(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_mrhs_add(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_mrhs_add_star(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#116
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#115
   def on_mrhs_new(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_mrhs_new_from_args(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_next(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_nl(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_nokw_param(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_op(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_opassign(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_operator_ambiguous(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_param_error(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_params(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_paren(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_parse_error(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_period(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_program(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_qsymbols_add(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_qsymbols_beg(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#116
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#115
   def on_qsymbols_new(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_qwords_add(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_qwords_beg(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#116
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#115
   def on_qwords_new(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_rational(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_rbrace(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_rbracket(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_redo(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_regexp_add(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_regexp_beg(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_regexp_end(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_regexp_literal(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#116
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#115
   def on_regexp_new(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_rescue(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_rescue_mod(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_rest_param(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_retry(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_return(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_return0(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_rparen(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_sclass(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_semicolon(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_sp(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_stmts_add(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#116
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#115
   def on_stmts_new(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_string_add(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_string_concat(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_string_content(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_string_dvar(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_string_embexpr(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_string_literal(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_super(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_symbeg(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_symbol(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_symbol_literal(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_symbols_add(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_symbols_beg(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#116
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#115
   def on_symbols_new(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_tlambda(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_tlambeg(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_top_const_field(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_top_const_ref(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_tstring_beg(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_tstring_content(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_tstring_end(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_unary(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_undef(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_unless(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_unless_mod(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_until(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_until_mod(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_var_alias(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_var_field(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_var_ref(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_vcall(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_void_stmt(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_when(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_while(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_while_mod(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_word_add(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#116
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#115
   def on_word_new(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_words_add(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_words_beg(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#116
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#115
   def on_words_new(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#140
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#139
   def on_words_sep(tok); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#123
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#121
   def on_xstring_add(list, item); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_xstring_literal(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#116
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#115
   def on_xstring_new(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_yield(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_yield0(*args); end
 
-  # source://actionview//lib/action_view/ripper_ast_parser.rb#131
+  # source://actionview//lib/action_view/ripper_ast_parser.rb#129
   def on_zsuper(*args); end
 end
 
@@ -13471,7 +13485,7 @@ class ActionView::Resolver
     # source://actionview//lib/action_view/template/resolver.rb#53
     def caching=(val); end
 
-    # source://actionview//lib/action_view/template/resolver.rb#53
+    # source://actionview//lib/action_view/template/resolver.rb#56
     def caching?; end
   end
 end
@@ -13490,30 +13504,47 @@ class ActionView::Resolver::PathParser::ParsedPath < ::Struct
   # Returns the value of attribute details
   #
   # @return [Object] the current value of details
+  #
+  # source://actionview//lib/action_view/template/resolver.rb#16
   def details; end
 
   # Sets the attribute details
   #
   # @param value [Object] the value to set the attribute details to.
   # @return [Object] the newly set value
+  #
+  # source://actionview//lib/action_view/template/resolver.rb#16
   def details=(_); end
 
   # Returns the value of attribute path
   #
   # @return [Object] the current value of path
+  #
+  # source://actionview//lib/action_view/template/resolver.rb#16
   def path; end
 
   # Sets the attribute path
   #
   # @param value [Object] the value to set the attribute path to.
   # @return [Object] the newly set value
+  #
+  # source://actionview//lib/action_view/template/resolver.rb#16
   def path=(_); end
 
   class << self
+    # source://actionview//lib/action_view/template/resolver.rb#16
     def [](*_arg0); end
+
+    # source://actionview//lib/action_view/template/resolver.rb#16
     def inspect; end
+
+    # source://actionview//lib/action_view/template/resolver.rb#16
     def keyword_init?; end
+
+    # source://actionview//lib/action_view/template/resolver.rb#16
     def members; end
+
+    # source://actionview//lib/action_view/template/resolver.rb#16
     def new(*_arg0); end
   end
 end
@@ -13631,7 +13662,7 @@ class ActionView::StreamingBuffer
   # source://actionview//lib/action_view/buffers.rb#113
   def <<(value); end
 
-  # source://actionview//lib/action_view/buffers.rb#113
+  # source://actionview//lib/action_view/buffers.rb#119
   def append=(value); end
 
   # Returns the value of attribute block.
@@ -13642,7 +13673,7 @@ class ActionView::StreamingBuffer
   # source://actionview//lib/action_view/buffers.rb#126
   def capture; end
 
-  # source://actionview//lib/action_view/buffers.rb#113
+  # source://actionview//lib/action_view/buffers.rb#118
   def concat(value); end
 
   # source://actionview//lib/action_view/buffers.rb#139
@@ -13656,7 +13687,7 @@ class ActionView::StreamingBuffer
   # source://actionview//lib/action_view/buffers.rb#143
   def raw; end
 
-  # source://actionview//lib/action_view/buffers.rb#121
+  # source://actionview//lib/action_view/buffers.rb#124
   def safe_append=(value); end
 
   # source://actionview//lib/action_view/buffers.rb#121
@@ -14019,7 +14050,7 @@ class ActionView::Template::HTML
   # source://actionview//lib/action_view/template/html.rb#14
   def identifier; end
 
-  # source://actionview//lib/action_view/template/html.rb#14
+  # source://actionview//lib/action_view/template/html.rb#18
   def inspect; end
 
   # source://actionview//lib/action_view/template/html.rb#24
@@ -14352,10 +14383,10 @@ class ActionView::Template::SimpleType
   # source://actionview//lib/action_view/template/types.rb#33
   def to_s; end
 
-  # source://actionview//lib/action_view/template/types.rb#33
+  # source://actionview//lib/action_view/template/types.rb#36
   def to_str; end
 
-  # source://actionview//lib/action_view/template/types.rb#38
+  # source://actionview//lib/action_view/template/types.rb#41
   def to_sym; end
 
   class << self
@@ -14407,7 +14438,7 @@ class ActionView::Template::Text
   # source://actionview//lib/action_view/template/text.rb#13
   def identifier; end
 
-  # source://actionview//lib/action_view/template/text.rb#13
+  # source://actionview//lib/action_view/template/text.rb#17
   def inspect; end
 
   # source://actionview//lib/action_view/template/text.rb#23
@@ -14544,7 +14575,7 @@ class ActionView::TemplatePath
 
   # @return [Boolean]
   #
-  # source://actionview//lib/action_view/template_path.rb#61
+  # source://actionview//lib/action_view/template_path.rb#64
   def ==(other); end
 
   # @return [Boolean]
@@ -14567,7 +14598,7 @@ class ActionView::TemplatePath
 
   # Returns the value of attribute partial.
   #
-  # source://actionview//lib/action_view/template_path.rb#12
+  # source://actionview//lib/action_view/template_path.rb#13
   def partial?; end
 
   # Returns the value of attribute prefix.
@@ -14577,12 +14608,12 @@ class ActionView::TemplatePath
 
   # Returns the value of attribute virtual.
   #
-  # source://actionview//lib/action_view/template_path.rb#12
+  # source://actionview//lib/action_view/template_path.rb#55
   def to_s; end
 
   # Returns the value of attribute virtual.
   #
-  # source://actionview//lib/action_view/template_path.rb#12
+  # source://actionview//lib/action_view/template_path.rb#54
   def to_str; end
 
   # Returns the value of attribute virtual.
@@ -14592,7 +14623,7 @@ class ActionView::TemplatePath
 
   # Returns the value of attribute virtual.
   #
-  # source://actionview//lib/action_view/template_path.rb#12
+  # source://actionview//lib/action_view/template_path.rb#14
   def virtual_path; end
 
   class << self
@@ -14705,13 +14736,37 @@ class ActionView::TestCase < ::ActiveSupport::TestCase
   extend ::ActiveSupport::Testing::ConstantLookup::ClassMethods
   extend ::ActionView::TestCase::Behavior::ClassMethods
 
-  # source://actionview//lib/action_view/helpers/translation_helper.rb#18
+  # source://actionview//lib/action_view/test_case.rb#449
+  def _helper_methods; end
+
+  # source://actionview//lib/action_view/test_case.rb#449
+  def _helper_methods=(_arg0); end
+
+  # source://actionview//lib/action_view/test_case.rb#449
+  def _helper_methods?; end
+
+  # source://actionview//lib/action_view/test_case.rb#449
   def debug_missing_translation; end
 
-  # source://actionview//lib/action_view/helpers/translation_helper.rb#18
+  # source://actionview//lib/action_view/test_case.rb#449
   def debug_missing_translation=(val); end
 
   class << self
+    # source://actionview//lib/action_view/test_case.rb#203
+    def __callbacks; end
+
+    # source://actionview//lib/action_view/test_case.rb#449
+    def _helper_methods; end
+
+    # source://actionview//lib/action_view/test_case.rb#449
+    def _helper_methods=(value); end
+
+    # source://actionview//lib/action_view/test_case.rb#449
+    def _helper_methods?; end
+
+    # source://actionview//lib/action_view/test_case.rb#449
+    def _helpers; end
+
     # source://actionview//lib/action_view/test_case.rb#201
     def content_class; end
 
@@ -14721,10 +14776,10 @@ class ActionView::TestCase < ::ActiveSupport::TestCase
     # source://actionview//lib/action_view/test_case.rb#201
     def content_class?; end
 
-    # source://actionview//lib/action_view/helpers/translation_helper.rb#18
+    # source://actionview//lib/action_view/test_case.rb#449
     def debug_missing_translation; end
 
-    # source://actionview//lib/action_view/helpers/translation_helper.rb#18
+    # source://actionview//lib/action_view/test_case.rb#449
     def debug_missing_translation=(val); end
   end
 end
@@ -14877,7 +14932,7 @@ module ActionView::TestCase::Behavior
 
   # The instance of ActionView::Base that is used by +render+.
   #
-  # source://actionview//lib/action_view/test_case.rb#357
+  # source://actionview//lib/action_view/test_case.rb#368
   def _view; end
 
   # Need to experiment if this priority is the best one: rendered => output_buffer
@@ -15050,13 +15105,7 @@ module ActionView::TestCase::Behavior::Locals
 end
 
 # source://actionview//lib/action_view/test_case.rb#302
-class ActionView::TestCase::Behavior::RenderedViewContent < ::String
-  # source://actionview//lib/action_view/test_case.rb#150
-  def html; end
-
-  # source://actionview//lib/action_view/test_case.rb#150
-  def json; end
-end
+class ActionView::TestCase::Behavior::RenderedViewContent < ::String; end
 
 # Need to experiment if this priority is the best one: rendered => output_buffer
 #
@@ -15082,7 +15131,7 @@ class ActionView::TestCase::Behavior::RenderedViewsCollection
   def view_rendered?(view, expected_locals); end
 end
 
-# source://actionview//lib/action_view/test_case.rb#0
+# source://actionview//lib/action_view/test_case.rb#449
 module ActionView::TestCase::HelperMethods
   # source://actionview//lib/action_view/test_case.rb#215
   def _test_case; end
@@ -15142,7 +15191,7 @@ class ActionView::TestCase::TestController < ::ActionController::Base
 
   private
 
-  # source://actionview//lib/action_view/layouts.rb#330
+  # source://actionview//lib/action_view/test_case.rb#16
   def _layout(lookup_context, formats); end
 
   class << self
@@ -15158,6 +15207,9 @@ class ActionView::TestCase::TestController < ::ActionController::Base
     #
     # source://actionview//lib/action_view/test_case.rb#23
     def controller_path=(_arg0); end
+
+    # source://actionview//lib/action_view/test_case.rb#16
+    def middleware_stack; end
   end
 end
 

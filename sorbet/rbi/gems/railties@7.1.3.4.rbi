@@ -515,7 +515,7 @@ class Rails::Application < ::Rails::Engine
 
   # Returns the value of attribute sandbox.
   #
-  # source://railties//lib/rails/application.rb#100
+  # source://railties//lib/rails/application.rb#101
   def sandbox?; end
 
   # The secret_key_base is used as the input secret to the application's key generator, which in turn
@@ -650,6 +650,7 @@ class Rails::Application < ::Rails::Engine
     # source://railties//lib/rails/application.rb#80
     def instance; end
 
+    # source://railties//lib/rails/application.rb#97
     def new(*_arg0); end
   end
 end
@@ -1441,6 +1442,12 @@ class Rails::Application::RoutesReloader
   # source://railties//lib/rails/application/routes_reloader.rb#15
   def initialize; end
 
+  # source://railties//lib/rails/application/routes_reloader.rb#8
+  def __callbacks; end
+
+  # source://railties//lib/rails/application/routes_reloader.rb#8
+  def __callbacks?; end
+
   # Returns the value of attribute eager_load.
   #
   # source://railties//lib/rails/application/routes_reloader.rb#11
@@ -1502,11 +1509,25 @@ class Rails::Application::RoutesReloader
 
   # source://railties//lib/rails/application/routes_reloader.rb#32
   def updater; end
+
+  class << self
+    # source://railties//lib/rails/application/routes_reloader.rb#8
+    def __callbacks; end
+
+    # source://railties//lib/rails/application/routes_reloader.rb#8
+    def __callbacks=(value); end
+
+    # source://railties//lib/rails/application/routes_reloader.rb#8
+    def __callbacks?; end
+  end
 end
 
 # source://railties//lib/rails/application_controller.rb#3
 class Rails::ApplicationController < ::ActionController::Base
   private
+
+  # source://railties//lib/rails/welcome_controller.rb#5
+  def _layout(lookup_context, formats); end
 
   # source://railties//lib/rails/application_controller.rb#25
   def disable_content_security_policy_nonce!; end
@@ -1518,6 +1539,20 @@ class Rails::ApplicationController < ::ActionController::Base
 
   # source://railties//lib/rails/application_controller.rb#15
   def require_local!; end
+
+  class << self
+    # source://railties//lib/rails/welcome_controller.rb#6
+    def __callbacks; end
+
+    # source://railties//lib/rails/welcome_controller.rb#7
+    def _layout; end
+
+    # source://railties//lib/rails/welcome_controller.rb#7
+    def _layout_conditions; end
+
+    # source://railties//lib/rails/welcome_controller.rb#5
+    def middleware_stack; end
+  end
 end
 
 # source://railties//lib/rails/autoloaders.rb#4
@@ -1680,6 +1715,9 @@ end
 class Rails::Command::Base < ::Thor
   include ::Rails::Command::Actions
 
+  # source://railties//lib/rails/command/base.rb#173
+  def current_subcommand; end
+
   # source://railties//lib/rails/command/base.rb#172
   def executable(*_arg0, **_arg1, &_arg2); end
 
@@ -1803,7 +1841,7 @@ module Rails::Command::Behavior
   mixes_in_class_methods ::Rails::Command::Behavior::ClassMethods
 end
 
-# source://railties//lib/rails/command/behavior.rb#0
+# source://railties//lib/rails/command/behavior.rb#10
 module Rails::Command::Behavior::ClassMethods
   # source://railties//lib/rails/command/behavior.rb#12
   def no_color!; end
@@ -2014,7 +2052,7 @@ class Rails::Configuration::MiddlewareStackProxy
   # source://railties//lib/rails/configuration.rb#70
   def delete(*_arg0, **_arg1, &_arg2); end
 
-  # source://railties//lib/rails/configuration.rb#52
+  # source://railties//lib/rails/configuration.rb#56
   def insert(*_arg0, **_arg1, &_arg2); end
 
   # source://railties//lib/rails/configuration.rb#58
@@ -2026,7 +2064,7 @@ class Rails::Configuration::MiddlewareStackProxy
   # source://railties//lib/rails/configuration.rb#88
   def merge_into(other); end
 
-  # source://railties//lib/rails/configuration.rb#74
+  # source://railties//lib/rails/configuration.rb#78
   def move(*_arg0, **_arg1, &_arg2); end
 
   # source://railties//lib/rails/configuration.rb#80
@@ -2406,6 +2444,18 @@ class Rails::Engine < ::Rails::Railtie
   # source://railties//lib/rails/engine.rb#439
   def initialize; end
 
+  # source://railties//lib/rails/engine.rb#433
+  def __callbacks; end
+
+  # source://railties//lib/rails/engine.rb#433
+  def __callbacks?; end
+
+  # source://railties//lib/rails/engine.rb#434
+  def _load_seed_callbacks; end
+
+  # source://railties//lib/rails/engine.rb#434
+  def _run_load_seed_callbacks(&block); end
+
   # Returns the underlying Rack application for this engine.
   #
   # source://railties//lib/rails/engine.rb#517
@@ -2551,6 +2601,18 @@ class Rails::Engine < ::Rails::Railtie
   def load_config_initializer(initializer); end
 
   class << self
+    # source://railties//lib/rails/engine.rb#433
+    def __callbacks=(value); end
+
+    # source://railties//lib/rails/engine.rb#433
+    def __callbacks?; end
+
+    # source://railties//lib/rails/engine.rb#434
+    def _load_seed_callbacks; end
+
+    # source://railties//lib/rails/engine.rb#434
+    def _load_seed_callbacks=(value); end
+
     # Returns the value of attribute called_from.
     #
     # source://railties//lib/rails/engine.rb#354
@@ -2605,7 +2667,7 @@ class Rails::Engine < ::Rails::Railtie
 
     # Returns the value of attribute isolated.
     #
-    # source://railties//lib/rails/engine.rb#354
+    # source://railties//lib/rails/engine.rb#356
     def isolated?; end
   end
 end
@@ -2843,7 +2905,7 @@ module Rails::Generators
     # source://railties//lib/rails/generators.rb#130
     def hidden_namespaces; end
 
-    # source://railties//lib/rails/generators.rb#159
+    # source://railties//lib/rails/generators.rb#162
     def hide_namespace(*namespaces); end
 
     # source://railties//lib/rails/generators.rb#159
@@ -2960,7 +3022,7 @@ module Rails::Generators::Actions
   #     %(config.asset_host = "localhost:3000")
   #   end
   #
-  # source://railties//lib/rails/generators/actions.rb#206
+  # source://railties//lib/rails/generators/actions.rb#221
   def application(data = T.unsafe(nil), options = T.unsafe(nil)); end
 
   # Adds configuration code to a \Rails runtime environment.
@@ -3277,7 +3339,7 @@ module Rails::Generators::Actions
 
   # Returns optimized string with indentation
   #
-  # source://railties//lib/rails/generators/actions.rb#487
+  # source://railties//lib/rails/generators/actions.rb#491
   def rebase_indentation(value, amount = T.unsafe(nil)); end
 
   # source://railties//lib/rails/generators/actions.rb#517
@@ -3294,7 +3356,7 @@ class Rails::Generators::Actions::CreateMigration < ::Thor::Actions::CreateFile
   # source://railties//lib/rails/generators/actions/create_migration.rb#41
   def existing_migration; end
 
-  # source://railties//lib/rails/generators/actions/create_migration.rb#41
+  # source://railties//lib/rails/generators/actions/create_migration.rb#45
   def exists?; end
 
   # @return [Boolean]
@@ -3428,7 +3490,25 @@ class Rails::Generators::AppBase < ::Rails::Generators::Base
   # source://railties//lib/rails/generators/app_base.rb#120
   def initialize(positional_argv, option_argv, *_arg2); end
 
-  # source://railties//lib/rails/generators/base.rb#401
+  # source://railties//lib/rails/generators/app_base.rb#24
+  def app_path; end
+
+  # source://railties//lib/rails/generators/app_base.rb#24
+  def app_path=(_arg0); end
+
+  # Returns the value of attribute rails_template.
+  #
+  # source://railties//lib/rails/generators/app_base.rb#21
+  def rails_template; end
+
+  # Sets the attribute rails_template
+  #
+  # @param value the value to set the attribute rails_template to.
+  #
+  # source://railties//lib/rails/generators/app_base.rb#21
+  def rails_template=(_arg0); end
+
+  # source://railties//lib/rails/generators/app_base.rb#22
   def shebang; end
 
   private
@@ -3741,7 +3821,7 @@ module Rails::Generators::AppName
   # source://railties//lib/rails/generators/app_name.rb#9
   def app_name; end
 
-  # source://railties//lib/rails/generators/app_name.rb#17
+  # source://railties//lib/rails/generators/app_name.rb#20
   def camelized; end
 
   # source://railties//lib/rails/generators/app_name.rb#13
@@ -4371,8 +4451,19 @@ class Rails::Generators::NamedBase < ::Rails::Generators::Base
   # source://railties//lib/rails/generators/named_base.rb#11
   def initialize(args, *options); end
 
+  # Returns the value of attribute file_name.
+  #
+  # source://railties//lib/rails/generators/named_base.rb#35
+  def file_name; end
+
   # source://railties//lib/rails/generators/named_base.rb#29
   def js_template(source, destination); end
+
+  # source://railties//lib/rails/generators/named_base.rb#9
+  def name; end
+
+  # source://railties//lib/rails/generators/named_base.rb#9
+  def name=(_arg0); end
 
   # source://railties//lib/rails/generators/named_base.rb#23
   def template(source, *args, &block); end
@@ -4593,77 +4684,77 @@ class Rails::Generators::TestCase < ::ActiveSupport::TestCase
   include ::FileUtils
   extend ::Rails::Generators::Testing::Behavior::ClassMethods
 
-  # source://railties//lib/rails/generators/testing/behavior.rb#21
+  # source://railties//lib/rails/generators/test_case.rb#31
   def current_path; end
 
-  # source://railties//lib/rails/generators/testing/behavior.rb#21
+  # source://railties//lib/rails/generators/test_case.rb#31
   def current_path=(_arg0); end
 
-  # source://railties//lib/rails/generators/testing/behavior.rb#21
+  # source://railties//lib/rails/generators/test_case.rb#31
   def current_path?; end
 
-  # source://railties//lib/rails/generators/testing/behavior.rb#22
+  # source://railties//lib/rails/generators/test_case.rb#31
   def default_arguments; end
 
-  # source://railties//lib/rails/generators/testing/behavior.rb#22
+  # source://railties//lib/rails/generators/test_case.rb#31
   def default_arguments=(_arg0); end
 
-  # source://railties//lib/rails/generators/testing/behavior.rb#22
+  # source://railties//lib/rails/generators/test_case.rb#31
   def default_arguments?; end
 
-  # source://railties//lib/rails/generators/testing/behavior.rb#23
+  # source://railties//lib/rails/generators/test_case.rb#31
   def destination_root; end
 
-  # source://railties//lib/rails/generators/testing/behavior.rb#23
+  # source://railties//lib/rails/generators/test_case.rb#31
   def destination_root=(_arg0); end
 
-  # source://railties//lib/rails/generators/testing/behavior.rb#23
+  # source://railties//lib/rails/generators/test_case.rb#31
   def destination_root?; end
 
-  # source://railties//lib/rails/generators/testing/behavior.rb#24
+  # source://railties//lib/rails/generators/test_case.rb#31
   def generator_class; end
 
-  # source://railties//lib/rails/generators/testing/behavior.rb#24
+  # source://railties//lib/rails/generators/test_case.rb#31
   def generator_class=(_arg0); end
 
-  # source://railties//lib/rails/generators/testing/behavior.rb#24
+  # source://railties//lib/rails/generators/test_case.rb#31
   def generator_class?; end
 
   class << self
-    # source://railties//lib/rails/generators/testing/behavior.rb#21
+    # source://railties//lib/rails/generators/test_case.rb#31
     def current_path; end
 
-    # source://railties//lib/rails/generators/testing/behavior.rb#21
+    # source://railties//lib/rails/generators/test_case.rb#31
     def current_path=(value); end
 
-    # source://railties//lib/rails/generators/testing/behavior.rb#21
+    # source://railties//lib/rails/generators/test_case.rb#31
     def current_path?; end
 
-    # source://railties//lib/rails/generators/testing/behavior.rb#22
+    # source://railties//lib/rails/generators/test_case.rb#31
     def default_arguments; end
 
-    # source://railties//lib/rails/generators/testing/behavior.rb#22
+    # source://railties//lib/rails/generators/test_case.rb#31
     def default_arguments=(value); end
 
-    # source://railties//lib/rails/generators/testing/behavior.rb#22
+    # source://railties//lib/rails/generators/test_case.rb#31
     def default_arguments?; end
 
-    # source://railties//lib/rails/generators/testing/behavior.rb#23
+    # source://railties//lib/rails/generators/test_case.rb#31
     def destination_root; end
 
-    # source://railties//lib/rails/generators/testing/behavior.rb#23
+    # source://railties//lib/rails/generators/test_case.rb#31
     def destination_root=(value); end
 
-    # source://railties//lib/rails/generators/testing/behavior.rb#23
+    # source://railties//lib/rails/generators/test_case.rb#31
     def destination_root?; end
 
-    # source://railties//lib/rails/generators/testing/behavior.rb#24
+    # source://railties//lib/rails/generators/test_case.rb#31
     def generator_class; end
 
-    # source://railties//lib/rails/generators/testing/behavior.rb#24
+    # source://railties//lib/rails/generators/test_case.rb#31
     def generator_class=(value); end
 
-    # source://railties//lib/rails/generators/testing/behavior.rb#24
+    # source://railties//lib/rails/generators/test_case.rb#31
     def generator_class?; end
   end
 end
@@ -4707,7 +4798,7 @@ module Rails::Generators::Testing::Assertions
   #     end
   #   end
   #
-  # source://railties//lib/rails/generators/testing/assertions.rb#25
+  # source://railties//lib/rails/generators/testing/assertions.rb#41
   def assert_directory(relative, *contents); end
 
   # Asserts the given attribute type gets a proper default value:
@@ -4768,7 +4859,7 @@ module Rails::Generators::Testing::Assertions
   #     end
   #   end
   #
-  # source://railties//lib/rails/generators/testing/assertions.rb#100
+  # source://railties//lib/rails/generators/testing/assertions.rb#104
   def assert_method(method, content); end
 
   # Asserts a given migration exists. You need to supply an absolute path or a
@@ -4791,7 +4882,7 @@ module Rails::Generators::Testing::Assertions
   #
   #   assert_no_file "config/random.rb"
   #
-  # source://railties//lib/rails/generators/testing/assertions.rb#47
+  # source://railties//lib/rails/generators/testing/assertions.rb#51
   def assert_no_directory(relative); end
 
   # Asserts a given file does not exist. You need to supply an absolute path or a
@@ -4975,6 +5066,9 @@ class Rails::HealthController < ::ActionController::Base
 
   private
 
+  # source://railties//lib/rails/health_controller.rb#35
+  def _layout(lookup_context, formats); end
+
   # source://railties//lib/rails/health_controller.rb#51
   def html_status(color:); end
 
@@ -4983,6 +5077,14 @@ class Rails::HealthController < ::ActionController::Base
 
   # source://railties//lib/rails/health_controller.rb#43
   def render_up; end
+
+  class << self
+    # source://railties//lib/rails/health_controller.rb#35
+    def middleware_stack; end
+
+    # source://railties//lib/rails/health_controller.rb#36
+    def rescue_handlers; end
+  end
 end
 
 # This module helps build the runtime properties that are displayed in
@@ -4998,7 +5100,7 @@ module Rails::Info
   def properties=(val); end
 
   class << self
-    # source://railties//lib/rails/info.rb#31
+    # source://railties//lib/rails/info.rb#41
     def inspect; end
 
     # source://railties//lib/rails/info.rb#10
@@ -5032,10 +5134,27 @@ class Rails::InfoController < ::Rails::ApplicationController
   private
 
   # source://railties//lib/rails/info_controller.rb#8
+  def _layout(lookup_context, formats); end
+
+  # source://railties//lib/rails/info_controller.rb#8
   def _layout_from_proc; end
 
   # source://railties//lib/rails/info_controller.rb#36
   def matching_routes(query:, exact_match:); end
+
+  class << self
+    # source://railties//lib/rails/info_controller.rb#10
+    def __callbacks; end
+
+    # source://railties//lib/rails/info_controller.rb#8
+    def _layout; end
+
+    # source://railties//lib/rails/info_controller.rb#8
+    def _layout_conditions; end
+
+    # source://railties//lib/rails/info_controller.rb#6
+    def middleware_stack; end
+  end
 end
 
 # source://railties//lib/rails/initializable.rb#6
@@ -5141,6 +5260,9 @@ class Rails::MailersController < ::Rails::ApplicationController
 
   private
 
+  # source://railties//lib/rails/mailers_controller.rb#5
+  def _layout(lookup_context, formats); end
+
   # source://railties//lib/rails/mailers_controller.rb#90
   def find_part(format); end
 
@@ -5163,9 +5285,20 @@ class Rails::MailersController < ::Rails::ApplicationController
   #
   # source://railties//lib/rails/mailers_controller.rb#62
   def show_previews?; end
+
+  class << self
+    # source://railties//lib/rails/mailers_controller.rb#8
+    def __callbacks; end
+
+    # source://railties//lib/rails/mailers_controller.rb#12
+    def _helper_methods; end
+
+    # source://railties//lib/rails/mailers_controller.rb#5
+    def middleware_stack; end
+  end
 end
 
-# source://railties//lib/rails/mailers_controller.rb#0
+# source://railties//lib/rails/mailers_controller.rb#12
 module Rails::MailersController::HelperMethods
   include ::ActionText::ContentHelper
   include ::ActionText::TagHelper
@@ -5196,16 +5329,16 @@ class Rails::Paths::Path
   # source://railties//lib/rails/paths.rb#132
   def absolute_current; end
 
-  # source://railties//lib/rails/paths.rb#153
+  # source://railties//lib/rails/paths.rb#152
   def autoload!; end
 
-  # source://railties//lib/rails/paths.rb#161
+  # source://railties//lib/rails/paths.rb#152
   def autoload?; end
 
-  # source://railties//lib/rails/paths.rb#153
+  # source://railties//lib/rails/paths.rb#152
   def autoload_once!; end
 
-  # source://railties//lib/rails/paths.rb#161
+  # source://railties//lib/rails/paths.rb#152
   def autoload_once?; end
 
   # source://railties//lib/rails/paths.rb#136
@@ -5217,10 +5350,10 @@ class Rails::Paths::Path
   # source://railties//lib/rails/paths.rb#167
   def each(&block); end
 
-  # source://railties//lib/rails/paths.rb#153
+  # source://railties//lib/rails/paths.rb#152
   def eager_load!; end
 
-  # source://railties//lib/rails/paths.rb#161
+  # source://railties//lib/rails/paths.rb#152
   def eager_load?; end
 
   # Returns all expanded paths but only if they exist in the filesystem.
@@ -5257,33 +5390,33 @@ class Rails::Paths::Path
   # source://railties//lib/rails/paths.rb#147
   def last; end
 
-  # source://railties//lib/rails/paths.rb#153
+  # source://railties//lib/rails/paths.rb#152
   def load_path!; end
 
-  # source://railties//lib/rails/paths.rb#161
+  # source://railties//lib/rails/paths.rb#152
   def load_path?; end
 
   # source://railties//lib/rails/paths.rb#188
   def paths; end
 
-  # source://railties//lib/rails/paths.rb#171
+  # source://railties//lib/rails/paths.rb#174
   def push(path); end
 
-  # source://railties//lib/rails/paths.rb#157
+  # source://railties//lib/rails/paths.rb#152
   def skip_autoload!; end
 
-  # source://railties//lib/rails/paths.rb#157
+  # source://railties//lib/rails/paths.rb#152
   def skip_autoload_once!; end
 
-  # source://railties//lib/rails/paths.rb#157
+  # source://railties//lib/rails/paths.rb#152
   def skip_eager_load!; end
 
-  # source://railties//lib/rails/paths.rb#157
+  # source://railties//lib/rails/paths.rb#152
   def skip_load_path!; end
 
   # Expands all paths against the root and return all unique values.
   #
-  # source://railties//lib/rails/paths.rb#201
+  # source://railties//lib/rails/paths.rb#235
   def to_a; end
 
   # source://railties//lib/rails/paths.rb#184
@@ -5690,6 +5823,7 @@ class Rails::Railtie
     # source://railties//lib/rails/railtie.rb#224
     def method_missing(name, *args, **_arg2, &block); end
 
+    # source://railties//lib/rails/railtie.rb#145
     def new(*_arg0); end
 
     # receives an instance variable identifier, set the variable value if is
@@ -6147,7 +6281,7 @@ class Rails::TestUnit::TestParser < ::Ripper
   # source://railties//lib/rails/test_unit/test_parser.rb#60
   def just_lineno(*_arg0); end
 
-  # source://railties//lib/rails/test_unit/test_parser.rb#56
+  # source://railties//lib/rails/test_unit/test_parser.rb#67
   def on_arg_paren(arg, *_arg1); end
 
   # source://railties//lib/rails/test_unit/test_parser.rb#79
@@ -6159,13 +6293,13 @@ class Rails::TestUnit::TestParser < ::Ripper
   # source://railties//lib/rails/test_unit/test_parser.rb#75
   def on_args_new; end
 
-  # source://railties//lib/rails/test_unit/test_parser.rb#56
+  # source://railties//lib/rails/test_unit/test_parser.rb#68
   def on_bodystmt(arg, *_arg1); end
 
-  # source://railties//lib/rails/test_unit/test_parser.rb#60
+  # source://railties//lib/rails/test_unit/test_parser.rb#73
   def on_brace_block(*_arg0); end
 
-  # source://railties//lib/rails/test_unit/test_parser.rb#56
+  # source://railties//lib/rails/test_unit/test_parser.rb#65
   def on_command(arg, *_arg1); end
 
   # source://railties//lib/rails/test_unit/test_parser.rb#52
@@ -6179,13 +6313,13 @@ class Rails::TestUnit::TestParser < ::Ripper
   # source://railties//lib/rails/test_unit/test_parser.rb#34
   def on_def(begin_line, *_arg1); end
 
-  # source://railties//lib/rails/test_unit/test_parser.rb#60
+  # source://railties//lib/rails/test_unit/test_parser.rb#71
   def on_do_block(*_arg0); end
 
-  # source://railties//lib/rails/test_unit/test_parser.rb#60
+  # source://railties//lib/rails/test_unit/test_parser.rb#70
   def on_ident(*_arg0); end
 
-  # source://railties//lib/rails/test_unit/test_parser.rb#56
+  # source://railties//lib/rails/test_unit/test_parser.rb#64
   def on_method_add_arg(arg, *_arg1); end
 
   # Everything past this point is to support declarative tests, which
@@ -6199,10 +6333,10 @@ class Rails::TestUnit::TestParser < ::Ripper
   # source://railties//lib/rails/test_unit/test_parser.rb#46
   def on_method_add_block(begin_line, end_line); end
 
-  # source://railties//lib/rails/test_unit/test_parser.rb#56
+  # source://railties//lib/rails/test_unit/test_parser.rb#66
   def on_stmts_add(arg, *_arg1); end
 
-  # source://railties//lib/rails/test_unit/test_parser.rb#60
+  # source://railties//lib/rails/test_unit/test_parser.rb#72
   def on_stmts_new(*_arg0); end
 
   # source://railties//lib/rails/test_unit/test_parser.rb#25
@@ -6242,4 +6376,23 @@ Rails::VERSION::TINY = T.let(T.unsafe(nil), Integer)
 class Rails::WelcomeController < ::Rails::ApplicationController
   # source://railties//lib/rails/welcome_controller.rb#9
   def index; end
+
+  private
+
+  # source://railties//lib/rails/welcome_controller.rb#7
+  def _layout(lookup_context, formats); end
+
+  class << self
+    # source://railties//lib/rails/welcome_controller.rb#6
+    def __callbacks; end
+
+    # source://railties//lib/rails/welcome_controller.rb#7
+    def _layout; end
+
+    # source://railties//lib/rails/welcome_controller.rb#7
+    def _layout_conditions; end
+
+    # source://railties//lib/rails/welcome_controller.rb#5
+    def middleware_stack; end
+  end
 end

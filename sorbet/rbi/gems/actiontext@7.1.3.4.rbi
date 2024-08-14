@@ -27,6 +27,18 @@ module ActionText
     # source://actiontext//lib/action_text.rb#53
     def html_document_fragment_class; end
 
+    # source://actiontext//lib/action_text/engine.rb#12
+    def railtie_helpers_paths; end
+
+    # source://actiontext//lib/action_text/engine.rb#12
+    def railtie_namespace; end
+
+    # source://actiontext//lib/action_text/engine.rb#12
+    def railtie_routes_url_helpers(include_path_helpers = T.unsafe(nil)); end
+
+    # source://actiontext//lib/action_text/engine.rb#12
+    def use_relative_model_naming?; end
+
     # Returns the currently loaded version of Action Text as a +Gem::Version+.
     #
     # source://actiontext//lib/action_text/version.rb#7
@@ -137,7 +149,7 @@ module ActionText::Attachable
   end
 end
 
-# source://actiontext//lib/action_text/attachable.rb#0
+# source://actiontext//lib/action_text/attachable.rb#55
 module ActionText::Attachable::ClassMethods
   # source://actiontext//lib/action_text/attachable.rb#56
   def from_attachable_sgid(sgid); end
@@ -174,6 +186,24 @@ class ActionText::Attachables::ContentAttachment
   extend ::ActiveModel::Validations::HelperMethods
   extend ::ActiveModel::Conversion::ClassMethods
 
+  # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+  def __callbacks; end
+
+  # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+  def __callbacks?; end
+
+  # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+  def _run_validate_callbacks(&block); end
+
+  # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+  def _validate_callbacks; end
+
+  # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+  def _validators; end
+
+  # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+  def _validators?; end
+
   # source://actiontext//lib/action_text/attachables/content_attachment.rb#18
   def attachable_plain_text_representation(caption); end
 
@@ -201,6 +231,12 @@ class ActionText::Attachables::ContentAttachment
   # source://actiontext//lib/action_text/attachables/content_attachment.rb#13
   def content_type=(_arg0); end
 
+  # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+  def model_name(&block); end
+
+  # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+  def param_delimiter=(_arg0); end
+
   # source://actiontext//lib/action_text/attachables/content_attachment.rb#22
   def to_html; end
 
@@ -210,14 +246,53 @@ class ActionText::Attachables::ContentAttachment
   # source://actiontext//lib/action_text/attachables/content_attachment.rb#26
   def to_s; end
 
+  # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+  def validation_context; end
+
   private
 
   # source://actiontext//lib/action_text/attachables/content_attachment.rb#35
   def content_instance; end
 
+  # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+  def validation_context=(_arg0); end
+
   class << self
+    # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+    def __callbacks; end
+
+    # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+    def __callbacks=(value); end
+
+    # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+    def __callbacks?; end
+
+    # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+    def _validate_callbacks; end
+
+    # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+    def _validate_callbacks=(value); end
+
+    # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+    def _validators; end
+
+    # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+    def _validators=(value); end
+
+    # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+    def _validators?; end
+
     # source://actiontext//lib/action_text/attachables/content_attachment.rb#8
     def from_node(node); end
+
+    # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+    def param_delimiter; end
+
+    # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+    def param_delimiter=(value); end
+
+    # source://actiontext//lib/action_text/attachables/content_attachment.rb#6
+    def param_delimiter?; end
   end
 end
 
@@ -232,6 +307,9 @@ class ActionText::Attachables::MissingAttachable
 
   # source://actiontext//lib/action_text/attachables/missing_attachable.rb#22
   def model; end
+
+  # source://actiontext//lib/action_text/attachables/missing_attachable.rb#6
+  def model_name(&block); end
 
   # source://actiontext//lib/action_text/attachables/missing_attachable.rb#14
   def to_partial_path; end
@@ -261,6 +339,9 @@ class ActionText::Attachables::RemoteImage
   #
   # source://actiontext//lib/action_text/attachables/remote_image.rb#28
   def height; end
+
+  # source://actiontext//lib/action_text/attachables/remote_image.rb#6
+  def model_name(&block); end
 
   # source://actiontext//lib/action_text/attachables/remote_image.rb#41
   def to_partial_path; end
@@ -330,6 +411,9 @@ class ActionText::Attachment
   # source://actiontext//lib/action_text/attachment.rb#129
   def inspect; end
 
+  # source://actiontext//lib/action_text/attachment.rb#64
+  def method_missing(method, *args, **_arg2, &block); end
+
   # Returns the value of attribute node.
   #
   # source://actiontext//lib/action_text/attachment.rb#61
@@ -396,6 +480,9 @@ class ActionText::Attachment
   # source://actiontext//lib/action_text/attachment.rb#134
   def node_attributes; end
 
+  # source://actiontext//lib/action_text/attachment.rb#64
+  def respond_to_missing?(name, include_private = T.unsafe(nil)); end
+
   # source://actiontext//lib/action_text/attachment.rb#142
   def sgid_attributes; end
 
@@ -459,21 +546,77 @@ class ActionText::AttachmentGallery
   # source://actiontext//lib/action_text/attachment_gallery.rb#52
   def initialize(node); end
 
+  # source://actiontext//lib/action_text/attachment_gallery.rb#5
+  def __callbacks; end
+
+  # source://actiontext//lib/action_text/attachment_gallery.rb#5
+  def __callbacks?; end
+
+  # source://actiontext//lib/action_text/attachment_gallery.rb#5
+  def _run_validate_callbacks(&block); end
+
+  # source://actiontext//lib/action_text/attachment_gallery.rb#5
+  def _validate_callbacks; end
+
+  # source://actiontext//lib/action_text/attachment_gallery.rb#5
+  def _validators; end
+
+  # source://actiontext//lib/action_text/attachment_gallery.rb#5
+  def _validators?; end
+
   # source://actiontext//lib/action_text/attachment_gallery.rb#56
   def attachments; end
 
   # source://actiontext//lib/action_text/attachment_gallery.rb#66
   def inspect; end
 
+  # source://actiontext//lib/action_text/attachment_gallery.rb#5
+  def model_name(&block); end
+
   # Returns the value of attribute node.
   #
   # source://actiontext//lib/action_text/attachment_gallery.rb#50
   def node; end
 
+  # source://actiontext//lib/action_text/attachment_gallery.rb#5
+  def param_delimiter=(_arg0); end
+
   # source://actiontext//lib/action_text/attachment_gallery.rb#62
   def size; end
 
+  # source://actiontext//lib/action_text/attachment_gallery.rb#5
+  def validation_context; end
+
+  private
+
+  # source://actiontext//lib/action_text/attachment_gallery.rb#5
+  def validation_context=(_arg0); end
+
   class << self
+    # source://actiontext//lib/action_text/attachment_gallery.rb#5
+    def __callbacks; end
+
+    # source://actiontext//lib/action_text/attachment_gallery.rb#5
+    def __callbacks=(value); end
+
+    # source://actiontext//lib/action_text/attachment_gallery.rb#5
+    def __callbacks?; end
+
+    # source://actiontext//lib/action_text/attachment_gallery.rb#5
+    def _validate_callbacks; end
+
+    # source://actiontext//lib/action_text/attachment_gallery.rb#5
+    def _validate_callbacks=(value); end
+
+    # source://actiontext//lib/action_text/attachment_gallery.rb#5
+    def _validators; end
+
+    # source://actiontext//lib/action_text/attachment_gallery.rb#5
+    def _validators=(value); end
+
+    # source://actiontext//lib/action_text/attachment_gallery.rb#5
+    def _validators?; end
+
     # source://actiontext//lib/action_text/attachment_gallery.rb#41
     def attachment_selector; end
 
@@ -488,6 +631,15 @@ class ActionText::AttachmentGallery
 
     # source://actiontext//lib/action_text/attachment_gallery.rb#37
     def from_node(node); end
+
+    # source://actiontext//lib/action_text/attachment_gallery.rb#5
+    def param_delimiter; end
+
+    # source://actiontext//lib/action_text/attachment_gallery.rb#5
+    def param_delimiter=(value); end
+
+    # source://actiontext//lib/action_text/attachment_gallery.rb#5
+    def param_delimiter?; end
 
     # source://actiontext//lib/action_text/attachment_gallery.rb#45
     def selector; end
@@ -520,7 +672,7 @@ module ActionText::Attachments::Minification
   mixes_in_class_methods ::ActionText::Attachments::Minification::ClassMethods
 end
 
-# source://actiontext//lib/action_text/attachments/minification.rb#0
+# source://actiontext//lib/action_text/attachments/minification.rb#8
 module ActionText::Attachments::Minification::ClassMethods
   # source://actiontext//lib/action_text/attachments/minification.rb#9
   def fragment_by_minifying_attachments(content); end
@@ -541,7 +693,7 @@ module ActionText::Attachments::TrixConversion
   def trix_attachment_content; end
 end
 
-# source://actiontext//lib/action_text/attachments/trix_conversion.rb#0
+# source://actiontext//lib/action_text/attachments/trix_conversion.rb#10
 module ActionText::Attachments::TrixConversion::ClassMethods
   # source://actiontext//lib/action_text/attachments/trix_conversion.rb#11
   def fragment_by_converting_trix_attachments(content); end
@@ -557,7 +709,7 @@ module ActionText::Attribute
   mixes_in_class_methods ::ActionText::Attribute::ClassMethods
 end
 
-# source://actiontext//lib/action_text/attribute.rb#0
+# source://actiontext//lib/action_text/attribute.rb#7
 module ActionText::Attribute::ClassMethods
   # source://actiontext//lib/action_text/attribute.rb#37
   def has_rich_text(name, encrypted: T.unsafe(nil), strict_loading: T.unsafe(nil)); end
@@ -665,7 +817,7 @@ class ActionText::Content
   # source://actiontext//lib/action_text/content.rb#27
   def present?(*_arg0, **_arg1, &_arg2); end
 
-  # source://actiontext//lib/action_text/rendering.rb#12
+  # source://actiontext//lib/action_text/content.rb#23
   def render(*_arg0, **_arg1, &_arg2); end
 
   # source://actiontext//lib/action_text/content.rb#103
@@ -714,6 +866,12 @@ class ActionText::Content
   class << self
     # source://actiontext//lib/action_text/content.rb#30
     def fragment_by_canonicalizing_content(content); end
+
+    # source://actiontext//lib/action_text/content.rb#23
+    def renderer; end
+
+    # source://actiontext//lib/action_text/content.rb#23
+    def renderer=(obj); end
   end
 end
 
@@ -946,7 +1104,7 @@ module ActionText::PlainTextConversion
   # source://actiontext//lib/action_text/plain_text_conversion.rb#60
   def plain_text_for_figcaption_node(node, index); end
 
-  # source://actiontext//lib/action_text/plain_text_conversion.rb#32
+  # source://actiontext//lib/action_text/plain_text_conversion.rb#37
   def plain_text_for_h1_node(node, index = T.unsafe(nil)); end
 
   # source://actiontext//lib/action_text/plain_text_conversion.rb#69
@@ -961,16 +1119,16 @@ module ActionText::PlainTextConversion
   # source://actiontext//lib/action_text/plain_text_conversion.rb#20
   def plain_text_for_node_children(node); end
 
-  # source://actiontext//lib/action_text/plain_text_conversion.rb#40
+  # source://actiontext//lib/action_text/plain_text_conversion.rb#45
   def plain_text_for_ol_node(node, index); end
 
-  # source://actiontext//lib/action_text/plain_text_conversion.rb#32
+  # source://actiontext//lib/action_text/plain_text_conversion.rb#37
   def plain_text_for_p_node(node, index = T.unsafe(nil)); end
 
   # source://actiontext//lib/action_text/plain_text_conversion.rb#52
   def plain_text_for_text_node(node, index); end
 
-  # source://actiontext//lib/action_text/plain_text_conversion.rb#40
+  # source://actiontext//lib/action_text/plain_text_conversion.rb#45
   def plain_text_for_ul_node(node, index); end
 
   # source://actiontext//lib/action_text/plain_text_conversion.rb#28
@@ -995,7 +1153,7 @@ module ActionText::Rendering
   mixes_in_class_methods ::ActionText::Rendering::ClassMethods
 end
 
-# source://actiontext//lib/action_text/rendering.rb#0
+# source://actiontext//lib/action_text/rendering.rb#15
 module ActionText::Rendering::ClassMethods
   # source://actiontext//lib/action_text/rendering.rb#16
   def action_controller_renderer; end
@@ -1011,6 +1169,9 @@ class ActionText::RichText < ::ActionText::Record
   include ::ActionText::RichText::GeneratedAttributeMethods
   include ::ActionText::RichText::GeneratedAssociationMethods
 
+  def autosave_associated_records_for_embeds_attachments(*args); end
+  def autosave_associated_records_for_embeds_blobs(*args); end
+  def autosave_associated_records_for_record(*args); end
   def blank?(*_arg0, **_arg1, &_arg2); end
   def empty?(*_arg0, **_arg1, &_arg2); end
   def nil?(*_arg0, **_arg1, &_arg2); end
@@ -1018,9 +1179,29 @@ class ActionText::RichText < ::ActionText::Record
   def to_plain_text; end
   def to_s(*_arg0, **_arg1, &_arg2); end
   def to_trix_html; end
+  def validate_associated_records_for_embeds_attachments(*args); end
+  def validate_associated_records_for_embeds_blobs(*args); end
 end
 
-module ActionText::RichText::GeneratedAssociationMethods; end
+module ActionText::RichText::GeneratedAssociationMethods
+  def embeds; end
+  def embeds=(attachables); end
+  def embeds_attachment_ids; end
+  def embeds_attachment_ids=(ids); end
+  def embeds_attachments; end
+  def embeds_attachments=(value); end
+  def embeds_blob_ids; end
+  def embeds_blob_ids=(ids); end
+  def embeds_blobs; end
+  def embeds_blobs=(value); end
+  def record; end
+  def record=(value); end
+  def record_changed?; end
+  def record_previously_changed?; end
+  def reload_record; end
+  def reset_record; end
+end
+
 module ActionText::RichText::GeneratedAttributeMethods; end
 
 # source://actiontext//lib/action_text/serialization.rb#4
@@ -1033,9 +1214,9 @@ module ActionText::Serialization
   def _dump(*_arg0); end
 end
 
-# source://actiontext//lib/action_text/serialization.rb#0
+# source://actiontext//lib/action_text/serialization.rb#7
 module ActionText::Serialization::ClassMethods
-  # source://actiontext//lib/action_text/serialization.rb#8
+  # source://actiontext//lib/action_text/serialization.rb#29
   def _load(content); end
 
   # source://actiontext//lib/action_text/serialization.rb#12
@@ -1166,8 +1347,6 @@ module ActionView::Helpers::FormHelper
   mixes_in_class_methods ::ActionView::Helpers::UrlHelper::ClassMethods
   mixes_in_class_methods ::ActionView::Helpers::SanitizeHelper::ClassMethods
 
-  def default_form_builder; end
-  def default_form_builder=(_arg0); end
   def rich_text_area(object_name, method, options = T.unsafe(nil)); end
 end
 

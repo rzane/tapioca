@@ -401,10 +401,22 @@ class Google::Protobuf::RepeatedField
   # @return [RepeatedField] a new instance of RepeatedField
   def initialize(*_arg0); end
 
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def &(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def *(*args, **_arg1, &block); end
+
   def +(_arg0); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def -(*args, **_arg1, &block); end
 
   # @raise [FrozenError]
   def <<(_arg0); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def <=>(*args, **_arg1, &block); end
 
   def ==(_arg0); end
   def [](*_arg0); end
@@ -412,7 +424,16 @@ class Google::Protobuf::RepeatedField
   # @raise [FrozenError]
   def []=(_arg0, _arg1); end
 
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def assoc(*args, **_arg1, &block); end
+
   def at(*_arg0); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def bsearch(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def bsearch_index(*args, **_arg1, &block); end
 
   # @raise [FrozenError]
   def clear; end
@@ -422,10 +443,22 @@ class Google::Protobuf::RepeatedField
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
   def collect!(*args, &block); end
 
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def combination(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def compact(*args, **_arg1, &block); end
+
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
   def compact!(*args, &block); end
 
   def concat(_arg0); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def count(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def cycle(*args, **_arg1, &block); end
 
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#104
   def delete(*args, &block); end
@@ -435,6 +468,18 @@ class Google::Protobuf::RepeatedField
 
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
   def delete_if(*args, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def difference(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def dig(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def drop(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def drop_while(*args, **_arg1, &block); end
 
   def dup; end
 
@@ -454,11 +499,23 @@ class Google::Protobuf::RepeatedField
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#92
   def empty?; end
 
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def eql?(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def fetch(*args, **_arg1, &block); end
+
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
   def fill(*args, &block); end
 
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def find_index(*args, **_arg1, &block); end
+
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#58
   def first(n = T.unsafe(nil)); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def flatten(*args, **_arg1, &block); end
 
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
   def flatten!(*args, &block); end
@@ -466,44 +523,103 @@ class Google::Protobuf::RepeatedField
   def freeze; end
   def hash; end
 
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def include?(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def index(*args, **_arg1, &block); end
+
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
   def insert(*args, &block); end
 
-  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def inspect(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def intersection(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def join(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#151
   def keep_if(*args, &block); end
 
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#69
   def last(n = T.unsafe(nil)); end
 
   def length; end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#99
   def map; end
 
-  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#152
   def map!(*args, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def pack(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def permutation(*args, **_arg1, &block); end
 
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#81
   def pop(n = T.unsafe(nil)); end
 
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def pretty_print(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def pretty_print_cycle(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def product(*args, **_arg1, &block); end
+
   # @raise [FrozenError]
   def push(*_arg0); end
 
-  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def rassoc(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#153
   def reject!(*args, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def repeated_combination(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def repeated_permutation(*args, **_arg1, &block); end
 
   # @raise [FrozenError]
   def replace(_arg0); end
 
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def reverse(*args, **_arg1, &block); end
+
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
   def reverse!(*args, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def rindex(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def rotate(*args, **_arg1, &block); end
 
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
   def rotate!(*args, &block); end
 
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def sample(*args, **_arg1, &block); end
+
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
   def select!(*args, &block); end
 
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def shelljoin(*args, **_arg1, &block); end
+
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#104
   def shift(*args, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def shuffle(*args, **_arg1, &block); end
 
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
   def shuffle!(*args, &block); end
@@ -511,6 +627,8 @@ class Google::Protobuf::RepeatedField
   def size; end
 
   # array aliases into enumerable
+  #
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#97
   def slice(*_arg0); end
 
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#104
@@ -529,13 +647,29 @@ class Google::Protobuf::RepeatedField
   # Also called as a fallback of Object#to_a
   def to_ary; end
 
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def to_s(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def transpose(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def union(*args, **_arg1, &block); end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def uniq(*args, **_arg1, &block); end
+
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#116
   def uniq!(*args, &block); end
 
   # source://google-protobuf//lib/google/protobuf/repeated_field.rb#104
   def unshift(*args, &block); end
 
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#98
   def values_at; end
+
+  # source://google-protobuf//lib/google/protobuf/repeated_field.rb#47
+  def |(*args, **_arg1, &block); end
 
   private
 
